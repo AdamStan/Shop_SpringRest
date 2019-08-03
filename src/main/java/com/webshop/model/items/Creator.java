@@ -11,6 +11,7 @@ public class Creator {
     @Id
     @GeneratedValue
     private Integer ID;
+    private String name;
     private String country;
     private String type;
     @OneToMany(mappedBy = "creator")
@@ -48,12 +49,22 @@ public class Creator {
         this.items = items;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Creator{" +
                 "ID=" + ID +
+                ", name='" + name + '\'' +
                 ", country='" + country + '\'' +
                 ", type='" + type + '\'' +
+                ", items=" + items +
                 '}';
     }
 }

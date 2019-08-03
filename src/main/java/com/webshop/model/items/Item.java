@@ -16,6 +16,7 @@ public class Item {
     @Id
     @GeneratedValue
     private Integer ID;
+    private String name;
     private String description;
     @ManyToOne
     @JoinColumn(name = "creator_id", nullable = false)
@@ -84,10 +85,19 @@ public class Item {
         this.orderToItems = orderToItems;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     @Override
     public String toString() {
         return "Item{" +
                 "ID=" + ID +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", creator=" + creator +
                 ", releaseDate=" + releaseDate +
