@@ -1,5 +1,6 @@
 package com.webshop.model.items;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.model.order.OrderToItem;
 import org.postgresql.util.PGmoney;
 
@@ -27,6 +28,7 @@ public class Item {
     private Boolean isAvailable;
     private PGmoney price;
     @OneToMany(mappedBy = "item")
+    @JsonIgnore
     private Set<OrderToItem> orderToItems;
 
     public Integer getID() {

@@ -1,5 +1,7 @@
 package com.webshop.model.items;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -15,6 +17,7 @@ public class Creator {
     private String country;
     private String type;
     @OneToMany(mappedBy = "creator")
+    @JsonIgnore
     private Set<Item> items;
 
     public Integer getID() {

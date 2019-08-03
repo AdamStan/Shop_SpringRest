@@ -1,5 +1,6 @@
 package com.webshop.model.order;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.model.users.Customer;
 
 import javax.persistence.*;
@@ -22,6 +23,7 @@ public class Order {
     @Column(name = "number_of_building")
     private String numberOfBuilding;
     @OneToMany(mappedBy = "orderObject")
+    @JsonIgnore
     private Set<OrderToItem> orderToItems;
 
     public long getID() {

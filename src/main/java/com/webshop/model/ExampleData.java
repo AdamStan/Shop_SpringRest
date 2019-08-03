@@ -26,6 +26,7 @@ public class ExampleData implements ApplicationRunner {
     private static final List<Creator> CREATOR_LIST = new ArrayList<>();
 
     private static Game game;
+    private static Game gameSecond;
     private static Book book;
     private static Movie movie;
 
@@ -100,6 +101,12 @@ public class ExampleData implements ApplicationRunner {
         game.setCreator(gameDeveloper);
         game.setVideoGameGenre("Action");
         game.setHowLong(12L);
+        gameSecond = new Game();
+        gameSecond.setName("AmazingGame2");
+        gameSecond.setDescription("");
+        gameSecond.setCreator(gameDeveloper);
+        gameSecond.setVideoGameGenre("Action");
+        gameSecond.setHowLong(18L);
         movie = new Movie();
         movie.setName("Another SuperHero Movie");
         movie.setCarrier("DVD");
@@ -119,6 +126,7 @@ public class ExampleData implements ApplicationRunner {
         creatorRepository.saveAll(CREATOR_LIST);
         movieRepository.save(movie);
         gameRepository.save(game);
+        gameRepository.save(gameSecond);
         bookRepository.save(book);
         sellerRepository.saveAll(SELLER_LIST);
         customerRepository.saveAll(CUSTOMER_LIST);

@@ -1,5 +1,6 @@
 package com.webshop.model.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.model.order.Order;
 
 import javax.persistence.Column;
@@ -19,6 +20,7 @@ public class Customer extends User {
     @Column(name = "number_of_building")
     private String numberOfBuilding;
     @OneToMany(mappedBy = "customer")
+    @JsonIgnore
     private Set<Order> orders;
 
     public String getEmail() {
