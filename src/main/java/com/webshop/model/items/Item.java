@@ -24,12 +24,24 @@ public class Item {
     private Creator creator;
     @Column(name = "release_date")
     private Date releaseDate;
-    @Column(name = "is_available")
+    @Column(name = "is_available", columnDefinition = "boolean default true")
     private Boolean isAvailable;
     private PGmoney price;
     @OneToMany(mappedBy = "item")
     @JsonIgnore
     private Set<OrderToItem> orderToItems;
+
+    public Item(){
+
+    }
+
+    public Item(String name, String description, Creator creator, Date releaseDate, PGmoney price) {
+        this.name = name;
+        this.description = description;
+        this.creator = creator;
+        this.releaseDate = releaseDate;
+        this.price = price;
+    }
 
     public Integer getID() {
         return ID;

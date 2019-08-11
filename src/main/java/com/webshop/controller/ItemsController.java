@@ -7,10 +7,7 @@ import com.webshop.model.items.Movie;
 import com.webshop.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -39,5 +36,10 @@ public class ItemsController {
     @GetMapping(path = "/allMovies")
     public @ResponseBody List<Movie> getAllMovies() {
         return itemsRepository.findAllMovies();
+    }
+
+    @GetMapping(path = "/search")
+    public @ResponseBody List<Item> getSearchedItems(@RequestParam String name){
+        return itemsRepository.findByNameWithQuery(name);
     }
 }

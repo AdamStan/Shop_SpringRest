@@ -7,11 +7,13 @@ import com.webshop.repository.CreatorRepository;
 import com.webshop.repository.CustomerRepository;
 import com.webshop.repository.ItemRepository;
 import com.webshop.repository.SellerRepository;
+import org.postgresql.util.PGmoney;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,14 +23,13 @@ import java.util.List;
 @Component
 public class ExampleData implements ApplicationRunner {
 
-    private static final List<Customer> CUSTOMER_LIST= new ArrayList<>();
-    private static final List<Seller> SELLER_LIST = new ArrayList<>();
-    private static final List<Creator> CREATOR_LIST = new ArrayList<>();
+    private static final List<Customer> CUSTOMERS = new ArrayList<>();
+    private static final List<Seller> SELLERS = new ArrayList<>();
+    private static final List<Creator> CREATORS = new ArrayList<>();
 
-    private static Game game;
-    private static Game gameSecond;
-    private static Book book;
-    private static Movie movie;
+    private static final List<Game> GAMES = new ArrayList<>();
+    private static final List<Book> BOOKS = new ArrayList<>();
+    private static final List<Movie> MOVIES = new ArrayList<>();
 
     @Autowired
     public CustomerRepository customerRepository;
@@ -51,11 +52,11 @@ public class ExampleData implements ApplicationRunner {
 
     private static void addingCustomers(){
         Customer customer = new Customer();
-        customer.setName("Anna");
+        customer.setName("Ewa");
         customer.setSurname("Kowalska");
-        customer.setUsername("anna78");
-        customer.setPassword("jaroslawa2018");
-        CUSTOMER_LIST.add(customer);
+        customer.setUsername("ewa79");
+        customer.setPassword("marek2008");
+        CUSTOMERS.add(customer);
     }
 
     private static void addingSellers(){
@@ -64,56 +65,51 @@ public class ExampleData implements ApplicationRunner {
         seller.setSurname("Kowalska");
         seller.setUsername("anna78");
         seller.setPassword("jaroslawa2018");
-        SELLER_LIST.add(seller);
+        SELLERS.add(seller);
     }
 
     private static void addingItemsAndCreators(){
         Creator writer = new Creator();
         Creator gameDeveloper = new Creator();
-        Creator movieCompany = new Creator();
+        Creator director = new Creator();
 
-        writer.setName("XYZ");
-        writer.setCountry("Poland");
+        writer.setName("Agatha Christie");
+        writer.setCountry("English");
         writer.setType("WRITER");
 
-        gameDeveloper.setName("RED");
-        gameDeveloper.setCountry("Poland");
+        gameDeveloper.setName("REDMaxis");
+        gameDeveloper.setCountry("USA");
         gameDeveloper.setType("GAME_DEV");
 
-        movieCompany.setName("DIZNEI");
-        movieCompany.setCountry("USA");
-        movieCompany.setType("MOVIE");
+        director.setName("DIZNEI");
+        director.setCountry("USA");
+        director.setType("MOVIE");
 
-        CREATOR_LIST.add(writer);
-        CREATOR_LIST.add(gameDeveloper);
-        CREATOR_LIST.add(movieCompany);
+        CREATORS.add(writer);
+        CREATORS.add(gameDeveloper);
+        CREATORS.add(director);
 
-        book = new Book();
-        book.setName("ABC");
-        book.setDescription("ABC was written by XYZ");
-        book.setCreator(writer);
-        book.setBookCover("SOFT");
-        book.setAvailable(Boolean.TRUE);
-        book.setNumberOfSites(243);
-        game = new Game();
-        game.setName("AmazingGame");
-        game.setDescription("");
-        game.setCreator(gameDeveloper);
-        game.setVideoGameGenre("Action");
-        game.setHowLong(12L);
-        gameSecond = new Game();
-        gameSecond.setName("AmazingGame2");
-        gameSecond.setDescription("");
-        gameSecond.setCreator(gameDeveloper);
-        gameSecond.setVideoGameGenre("Action");
-        gameSecond.setHowLong(18L);
-        movie = new Movie();
-        movie.setName("Another SuperHero Movie");
-        movie.setCarrier("DVD");
-        movie.setHowLongInMinutes(69);
-        movie.setMainActors("Jessica G, Maria D");
-        movie.setCreator(movieCompany);
-
+        BOOKS.add((Book) ItemFactory.createItem(ItemFactory.ItemTypes.BOOK, "A Murder is Announced",
+                "Agatha Christie’s most ingenious murder mystery...", writer,
+                Date.valueOf("2015-07-15"), new PGmoney(35.49)));
+        BOOKS.add((Book) ItemFactory.createItem(ItemFactory.ItemTypes.BOOK, "Death in the Clouds",
+                "Death in the Clouds is a work of detective fiction by British writer Agatha Christie",
+                writer, Date.valueOf("2015-07-15"), new PGmoney(35.49)));
+        GAMES.add((Game) ItemFactory.createItem(ItemFactory.ItemTypes.GAME, "The Sims 3",
+                "The Sims 3 is the third major title in the life simulation video game developed by Maxis " +
+                        "and published by Electronic Arts", gameDeveloper, Date.valueOf("2009-06-02"),
+                new PGmoney(59.99)));
+        GAMES.add((Game) ItemFactory.createItem(ItemFactory.ItemTypes.GAME, "The Sims 4",
+                "The Sims 4 is the fourth major title in the life simulation video game series The Sims.",
+                gameDeveloper, Date.valueOf("2014-09-05"), new PGmoney(122.99)));
+        MOVIES.add((Movie) ItemFactory.createItem(ItemFactory.ItemTypes.MOVIE, "The Lion King",
+                "After the murder of his father, a young lion prince flees his kingdom only to learn the " +
+                        "true meaning of responsibility and bravery.", director, Date.valueOf("2019-07-19"),
+                new PGmoney(54.47)));
+        MOVIES.add((Movie) ItemFactory.createItem(ItemFactory.ItemTypes.MOVIE, "Toy Story 4",
+                "When a new toy called \"Forky\" joins Woody and the gang, a road trip alongside old and " +
+                        "new friends reveals how big the world can be for a toy.", director,Date.valueOf("2019-08-09"),
+                new PGmoney(35.49)));
     }
 
     /**
@@ -123,12 +119,11 @@ public class ExampleData implements ApplicationRunner {
      */
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        creatorRepository.saveAll(CREATOR_LIST);
-        movieRepository.save(movie);
-        gameRepository.save(game);
-        gameRepository.save(gameSecond);
-        bookRepository.save(book);
-        sellerRepository.saveAll(SELLER_LIST);
-        customerRepository.saveAll(CUSTOMER_LIST);
+        creatorRepository.saveAll(CREATORS);
+        movieRepository.saveAll(MOVIES);
+        gameRepository.saveAll(GAMES);
+        bookRepository.saveAll(BOOKS);
+        sellerRepository.saveAll(SELLERS);
+        customerRepository.saveAll(CUSTOMERS);
     }
 }

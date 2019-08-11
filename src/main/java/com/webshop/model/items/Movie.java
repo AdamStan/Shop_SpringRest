@@ -1,7 +1,10 @@
 package com.webshop.model.items;
 
+import org.postgresql.util.PGmoney;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.sql.Date;
 
 @Entity
 public class Movie extends Item{
@@ -13,6 +16,13 @@ public class Movie extends Item{
 
     @Column(name = "how_long_in_minutes")
     private Integer howLongInMinutes;
+
+    public Movie() {
+    }
+
+    public Movie(String name, String description, Creator creator, Date releaseDate, PGmoney price) {
+        super(name, description, creator, releaseDate, price);
+    }
 
     public String getMainActors() {
         return mainActors;

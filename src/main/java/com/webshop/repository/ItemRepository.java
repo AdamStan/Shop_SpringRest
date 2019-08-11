@@ -6,6 +6,7 @@ import com.webshop.model.items.Item;
 import com.webshop.model.items.Movie;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -17,4 +18,14 @@ public interface ItemRepository<T extends Item> extends CrudRepository<T, Intege
     List<Book> findAllBooks();
     @Query("select e from Movie as e")
     List<Movie> findAllMovies();
+
+    /**
+     * Searchs in database for item with name like %name%
+     * @param name
+     * parameter for item's name
+     * @return
+     * list with items which has name like name
+     */
+    @Query(value = "select e from Item as e where LOWER(e.name) LIKE CONCAT('%', LOWER(:search_name),'%')")
+    List<Item> findByNameWithQuery(@Param("search_name") String name);
 }
