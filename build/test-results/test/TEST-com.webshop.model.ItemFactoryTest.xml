@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.webshop.model.ItemFactoryTest" tests="4" skipped="0" failures="0" errors="0" timestamp="2019-08-11T10:22:26" hostname="DESKTOP-NFD4U68" time="0.01">
+  <properties/>
+  <testcase name="createMovie" classname="com.webshop.model.ItemFactoryTest" time="0.009"/>
+  <testcase name="createBook" classname="com.webshop.model.ItemFactoryTest" time="0.0"/>
+  <testcase name="createGame" classname="com.webshop.model.ItemFactoryTest" time="0.0"/>
+  <testcase name="createItem" classname="com.webshop.model.ItemFactoryTest" time="0.0"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
