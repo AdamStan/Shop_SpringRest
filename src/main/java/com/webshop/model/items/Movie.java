@@ -1,9 +1,8 @@
 package com.webshop.model.items;
 
-import org.postgresql.util.PGmoney;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
@@ -20,7 +19,7 @@ public class Movie extends Item{
     public Movie() {
     }
 
-    public Movie(String name, String description, Creator creator, Date releaseDate, PGmoney price) {
+    public Movie(String name, String description, Creator creator, Date releaseDate, BigDecimal price) {
         super(name, description, creator, releaseDate, price);
     }
 

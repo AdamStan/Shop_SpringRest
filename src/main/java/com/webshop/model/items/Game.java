@@ -1,9 +1,8 @@
 package com.webshop.model.items;
 
-import org.postgresql.util.PGmoney;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import java.math.BigDecimal;
 import java.sql.Date;
 
 @Entity
@@ -18,7 +17,7 @@ public class Game extends Item {
     public Game() {
     }
 
-    public Game(String name, String description, Creator creator, Date releaseDate, PGmoney price) {
+    public Game(String name, String description, Creator creator, Date releaseDate, BigDecimal price) {
         super(name, description, creator, releaseDate, price);
     }
 

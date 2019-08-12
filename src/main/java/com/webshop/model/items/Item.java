@@ -2,9 +2,9 @@ package com.webshop.model.items;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.model.order.OrderToItem;
-import org.postgresql.util.PGmoney;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.Set;
 
@@ -26,7 +26,7 @@ public class Item {
     private Date releaseDate;
     @Column(name = "is_available", columnDefinition = "boolean default true")
     private Boolean isAvailable;
-    private PGmoney price;
+    private BigDecimal price;
     @OneToMany(mappedBy = "item")
     @JsonIgnore
     private Set<OrderToItem> orderToItems;
@@ -35,7 +35,7 @@ public class Item {
 
     }
 
-    public Item(String name, String description, Creator creator, Date releaseDate, PGmoney price) {
+    public Item(String name, String description, Creator creator, Date releaseDate, BigDecimal price) {
         this.name = name;
         this.description = description;
         this.creator = creator;
@@ -75,11 +75,11 @@ public class Item {
         this.releaseDate = releaseDate;
     }
 
-    public PGmoney getPrice() {
+    public BigDecimal getPrice() {
         return price;
     }
 
-    public void setPrice(PGmoney price) {
+    public void setPrice(BigDecimal price) {
         this.price = price;
     }
 

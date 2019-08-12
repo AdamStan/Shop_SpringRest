@@ -13,6 +13,7 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.stereotype.Component;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -91,25 +92,25 @@ public class ExampleData implements ApplicationRunner {
 
         BOOKS.add((Book) ItemFactory.createItem(ItemFactory.ItemTypes.BOOK, "A Murder is Announced",
                 "Agatha Christie’s most ingenious murder mystery...", writer,
-                Date.valueOf("2015-07-15"), new PGmoney(35.49)));
+                Date.valueOf("2015-07-15"), new BigDecimal(35.49)));
         BOOKS.add((Book) ItemFactory.createItem(ItemFactory.ItemTypes.BOOK, "Death in the Clouds",
                 "Death in the Clouds is a work of detective fiction by British writer Agatha Christie",
-                writer, Date.valueOf("2015-07-15"), new PGmoney(35.49)));
+                writer, Date.valueOf("2015-07-15"), new BigDecimal(35.49)));
         GAMES.add((Game) ItemFactory.createItem(ItemFactory.ItemTypes.GAME, "The Sims 3",
                 "The Sims 3 is the third major title in the life simulation video game developed by Maxis " +
                         "and published by Electronic Arts", gameDeveloper, Date.valueOf("2009-06-02"),
-                new PGmoney(59.99)));
+                new BigDecimal(59.99)));
         GAMES.add((Game) ItemFactory.createItem(ItemFactory.ItemTypes.GAME, "The Sims 4",
                 "The Sims 4 is the fourth major title in the life simulation video game series The Sims.",
-                gameDeveloper, Date.valueOf("2014-09-05"), new PGmoney(122.99)));
+                gameDeveloper, Date.valueOf("2014-09-05"), new BigDecimal(122.99)));
         MOVIES.add((Movie) ItemFactory.createItem(ItemFactory.ItemTypes.MOVIE, "The Lion King",
                 "After the murder of his father, a young lion prince flees his kingdom only to learn the " +
                         "true meaning of responsibility and bravery.", director, Date.valueOf("2019-07-19"),
-                new PGmoney(54.47)));
+                new BigDecimal(54.47)));
         MOVIES.add((Movie) ItemFactory.createItem(ItemFactory.ItemTypes.MOVIE, "Toy Story 4",
                 "When a new toy called \"Forky\" joins Woody and the gang, a road trip alongside old and " +
                         "new friends reveals how big the world can be for a toy.", director,Date.valueOf("2019-08-09"),
-                new PGmoney(35.49)));
+                new BigDecimal(35.49)));
     }
 
     /**

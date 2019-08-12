@@ -1,8 +1,8 @@
 package com.webshop.model;
 
 import com.webshop.model.items.*;
-import org.postgresql.util.PGmoney;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 
 public class ItemFactory {
@@ -28,7 +28,7 @@ public class ItemFactory {
      * book, game, movie or item
      */
     public static Item createItem(ItemTypes type, String name, String description,
-                                  Creator creator, Date date, PGmoney price){
+                                  Creator creator, Date date, BigDecimal price){
         switch (type) {
             case BOOK:
                 return new Book(name, description, creator, date, price);
