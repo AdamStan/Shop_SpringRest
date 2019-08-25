@@ -4,34 +4,40 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.webshop.model.users.Customer;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.time.LocalDateTime;
 import java.util.Set;
-// https://vladmihalcea.com/the-best-way-to-map-a-many-to-many-association-with-extra-columns-when-using-jpa-and-hibernate/
+
 @Entity
 @Table(name = "orders")
 public class Order {
     @Id
-    @GeneratedValue
-    private Integer ID;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id", updatable = false, nullable = false)
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = true)
+    @JsonIgnore
     private Customer customer;
     @Column(name = "date_of_order")
-    private Date dateOfOrder;
+    private LocalDateTime dateOfOrder;
+    @Column(nullable = false)
     private String city;
+    @Column(nullable = false)
     private String street;
-    @Column(name = "number_of_building")
+    @Column(name = "number_of_building", nullable = false)
     private String numberOfBuilding;
+    @Column(name = "postal_code", nullable = false)
+    private String postalCode;
     @OneToMany(mappedBy = "orderObject")
     @JsonIgnore
     private Set<OrderToItem> orderToItems;
 
-    public long getID() {
-        return ID;
+    public Integer getId() {
+        return id;
     }
 
-    public void setID(Integer ID) {
-        this.ID = ID;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Customer getCustomer() {
@@ -42,11 +48,11 @@ public class Order {
         this.customer = customer;
     }
 
-    public Date getDateOfOrder() {
+    public LocalDateTime getDateOfOrder() {
         return dateOfOrder;
     }
 
-    public void setDateOfOrder(Date dateOfOrder) {
+    public void setDateOfOrder(LocalDateTime dateOfOrder) {
         this.dateOfOrder = dateOfOrder;
     }
 
@@ -81,4 +87,8 @@ public class Order {
     public void setOrderToItems(Set<OrderToItem> orderToItems) {
         this.orderToItems = orderToItems;
     }
+
+    public String getPostalCode() { return postalCode; }
+
+    public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
 }

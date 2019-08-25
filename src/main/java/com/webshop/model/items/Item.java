@@ -17,15 +17,18 @@ public class Item {
     @Id
     @GeneratedValue
     private Integer ID;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String description;
     @ManyToOne
     @JoinColumn(name = "creator_id", nullable = false)
     private Creator creator;
     @Column(name = "release_date")
     private Date releaseDate;
-    @Column(name = "is_available", columnDefinition = "boolean default true")
+    @Column(name = "is_available")
     private Boolean isAvailable;
+    @Column(nullable = false)
     private BigDecimal price;
     @OneToMany(mappedBy = "item")
     @JsonIgnore
