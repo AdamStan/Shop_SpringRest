@@ -46,6 +46,7 @@ public class OrderController {
         newOrder.setStreet(object.getAsJsonPrimitive("street").getAsString());
         newOrder.setNumberOfBuilding(object.getAsJsonPrimitive("numberOfBuilding").getAsString());
         newOrder.setPostalCode(object.getAsJsonPrimitive("postalCode").getAsString());
+        newOrder.setEmail(object.getAsJsonPrimitive("email").getAsString());
         newOrder.setDateOfOrder(LocalDateTime.now());
 
         JsonArray arrayOfItemsInBasket = object.getAsJsonArray("itemsInBasket");

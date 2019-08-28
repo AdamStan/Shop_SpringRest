@@ -31,6 +31,7 @@ public class Order {
     @OneToMany(mappedBy = "orderObject")
     @JsonIgnore
     private Set<OrderToItem> orderToItems;
+    private String email;
 
     public Integer getId() {
         return id;
@@ -91,4 +92,12 @@ public class Order {
     public String getPostalCode() { return postalCode; }
 
     public void setPostalCode(String postalCode) { this.postalCode = postalCode; }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
