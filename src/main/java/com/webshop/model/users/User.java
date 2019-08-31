@@ -1,8 +1,14 @@
 package com.webshop.model.users;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @Table(name="app_users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
@@ -14,52 +20,19 @@ public class User {
     private String password;
     private String name;
     private String surname;
+    @Column(name="is_enabled")
+    private boolean enable = true;
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private List<Role> roles;
 
-    /**
-     * Not necessary, it will be generated automatically
-     */
-    public User(){
+    public User() {
 
     }
 
-    public Integer getID() {
-        return ID;
-    }
-
-    public void setID(Integer ID) {
-        this.ID = ID;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
+    public User(String username, String password, List<Role> roles) {
         this.username = username;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
+        this.roles = roles;
     }
 
     @Override
